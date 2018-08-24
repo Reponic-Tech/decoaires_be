@@ -43,8 +43,9 @@ router.register(r'products', ProductViewSet)
 router.register(r'images', ImageViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+   url(r'^', include(router.urls)),
 	url(r'^admin/', admin.site.urls),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+   url(r'^', include('auth0login.urls')),
+   url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 	# url(r'^products/', include('decoaire_products.urls')),
 ]

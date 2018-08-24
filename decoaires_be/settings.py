@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	 'rest_framework',
-	 'decoaire_products.apps.DecoaireProductsConfig'
+    'rest_framework',
+    'decoaire_products.apps.DecoaireProductsConfig',
+    'social_django',
+    'auth0login'
+    #  'auth0login.apps.Auth0LoginConfig'
 ]
 
 MIDDLEWARE = [
@@ -76,9 +79,15 @@ WSGI_APPLICATION = 'decoaires_be.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
+    #  'default': {
+    #      'ENGINE': 'django.db.backends.sqlite3',
+    #      'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #  }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': 'db/my.cnf',
+        },
     }
 }
 
@@ -127,3 +136,25 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     )
 }
+
+# Aut0
+
+# Remove end slash from routes
+SOCIAL_AUTH_TRAILING_SLASH = False
+SOCIAL_AUTH_AUTH0_DOMAIN = 'arcela34.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'OT85nb8jnoN90KJbVsj460jyWaaJDUVe'
+SOCIAL_AUTH_AUTH0_SECRET = 'KBEXjN6Tr15q_0AckvcYBboMRLP0n3KGYZnNQ2gOHQSb1EQVd-UQySAWIefsoADI'
+
+SOCIAL_AUTH_AUTH0_SCOPE = [
+    'openid',
+    'profile'
+]
+
+AUTHENTICATION_BACKENDS = {
+    'auth0login.auth0backend.Auth0',
+    'django.contrib.auth.backends.ModelBackend'
+}
+
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/dashboard"
+LOGOUT_REDIRECT_URL = "/"
