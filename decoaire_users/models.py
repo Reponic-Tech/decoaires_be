@@ -1,5 +1,5 @@
+from __future__ import unicode_literals
 from django.db import models
-
 # Create your models here.
 
 
@@ -12,7 +12,7 @@ class User(models.Model):
 
 
 class Admin(models.Model):
-    users = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
     email = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

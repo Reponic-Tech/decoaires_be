@@ -23,7 +23,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from decoaire_products.urls import ProductViewSet, ImageViewSet
+from decoaire_products.urls import ProductViewSet
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -40,12 +40,12 @@ class UserViewSet(viewsets.ModelViewSet):
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'products', ProductViewSet)
-router.register(r'images', ImageViewSet)
+
 
 urlpatterns = [
    url(r'^', include(router.urls)),
 	url(r'^admin/', admin.site.urls),
-   url(r'^', include('auth0login.urls')),
    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 	# url(r'^products/', include('decoaire_products.urls')),
+   # url(r'^', include('auth0login.urls')),
 ]
