@@ -8,3 +8,4 @@ whitenoise
 django-filter
 mysqlclient
 gunicorn
+django_heroku
