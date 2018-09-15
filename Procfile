@@ -1,1 +1,1 @@
-web: gunicorn myproject.wsgi
+web: gunicorn decoaires_be.wsgi
