@@ -7,3 +7,4 @@ Markdown
 whitenoise
 django-filter
 mysqlclient
+gunicorn
