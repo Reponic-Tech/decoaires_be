@@ -1,5 +1,4 @@
 from django.conf.urls import url, include
-# import views
 from decoaire_products.models import Product
 
 # """ REST """
@@ -26,5 +25,5 @@ router.register(r'products', ProductViewSet)
 
 # URL
 urlpatterns = [
-    url(r'^', include(router.urls)),
+		url(r'^', include(router.urls)),	
 ]

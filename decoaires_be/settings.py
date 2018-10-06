@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'decoaire_products.apps.DecoaireProductsConfig',
   	 'decoaire_users.apps.DecoaireUsersConfig',
-   #  'social_django',    
-    #  'auth0login.apps.Auth0LoginConfig'
 ]
 
 MIDDLEWARE = [
@@ -137,26 +135,11 @@ REST_FRAMEWORK = {
     )
 }
 
-# Aut0
+#Mail settings
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'decoariesapp@gmail.com'
+EMAIL_HOST_PASSWORD = 'Decoariesapp#'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
-# Remove end slash from routes
-# SOCIAL_AUTH_TRAILING_SLASH = False
-# SOCIAL_AUTH_AUTH0_DOMAIN = 'arcela34.auth0.com'
-# SOCIAL_AUTH_AUTH0_KEY = 'OT85nb8jnoN90KJbVsj460jyWaaJDUVe'
-# SOCIAL_AUTH_AUTH0_SECRET = 'KBEXjN6Tr15q_0AckvcYBboMRLP0n3KGYZnNQ2gOHQSb1EQVd-UQySAWIefsoADI'
-
-# SOCIAL_AUTH_AUTH0_SCOPE = [
-#     'openid',
-#     'profile'
-# ]
-
-# AUTHENTICATION_BACKENDS = {
-#     'auth0login.auth0backend.Auth0',
-#     'django.contrib.auth.backends.ModelBackend'
-# }
-
-# LOGIN_URL = "/login/auth0"
-# LOGIN_REDIRECT_URL = "/dashboard"
-# LOGOUT_REDIRECT_URL = "/"
-
-django_heroku.settings(locals())
+# django_heroku.settings(locals())

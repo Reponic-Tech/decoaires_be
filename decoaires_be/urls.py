@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.http import HttpResponse
+from smtplib import SMTPException
+
 from rest_framework import routers, serializers, viewsets
 
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
@@ -36,6 +40,23 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
+def sendBudget(request):
+
+	try:
+		send_mail(
+                    'Testing budget',
+               					'Your budget is.',
+               					'arcela34@gmail.com',
+               					['decoairesbe@yopmail.com'],
+               					fail_silently=False,
+                )
+
+	except SMTPException as e:
+		HttpResponse('There was an error sending an email: ', e)
+
+	return HttpResponse('Budget')
+
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -45,7 +66,6 @@ router.register(r'products', ProductViewSet)
 urlpatterns = [
    url(r'^', include(router.urls)),
 	url(r'^admin/', admin.site.urls),
-   url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-	# url(r'^products/', include('decoaire_products.urls')),
-   # url(r'^', include('auth0login.urls')),
+   url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),	
+	url(r'^sendBudget/$', sendBudget, name='sendBudget'),
 ]
